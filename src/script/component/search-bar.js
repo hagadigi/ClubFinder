@@ -3,10 +3,21 @@ class SearchBar extends HTMLElement{
         this.render();
     }
 
+    set clickEvent(event){
+        this._clickEvent = event;
+        this.render();
+    }
+
+    get value(){
+        return this.querySelector('#searchElement').value;
+    }
+
     render(){
-        this.innerHTML = `<input placeholder="Search football club" id=${this.searchElement} type="search">
-        <button id="${this.searchButtonElement}" type="submit">Search</button>`;
+        this.innerHTML =   `<div id="search-container" class="search-container">
+        <input placeholder="Search football club" id="searchElement" type="search">
+        <button id="searchButtonElement" type="submit">Search</button>`;
+        this.querySelector('#searchButtonElement').addEventListener('click', this._clickEvent);
     }
 }
 
-customElements.define('search-container', SearchBar);
+customElements.define('search-bar', SearchBar);
